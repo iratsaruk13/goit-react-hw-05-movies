@@ -1,9 +1,12 @@
 import React from 'react'
-import { useParams } from 'react-router-dom'
+import { Outlet, useParams } from 'react-router-dom'
 
-export const MovieDetails = () => {
+const MovieDetails = () => {
     const {id} = useParams();
   return (
-    <div>MovieDetails {id} </div>
+    <div>MovieDetails {id} 
+    <Outlet />
+    </div>
   )
 }
+ export default MovieDetails
