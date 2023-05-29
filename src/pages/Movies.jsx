@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom";
-import  {fetchSearchMovies}  from "../api/api";
+import { fetchSearchMovies } from "../api/api";
 import { toast } from "react-toastify";
 import MoviesList from "../components/MoviesList/MoviesList";
 import Search from "../components/Search/Search";
@@ -32,9 +32,9 @@ const Movies = () => {
     getSearchMovie(searchQuery);
   }, [searchParams]);
 
-  const onMovieNameChange = searchQuery => {
-    setSearchParams({movie: searchQuery})
-  }
+  const onMovieNameChange = (searchQuery) => {
+    setSearchParams({ movie: searchQuery });
+  };
 
   return (
     <>

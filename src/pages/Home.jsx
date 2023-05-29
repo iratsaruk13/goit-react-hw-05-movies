@@ -1,7 +1,8 @@
 import { useState, useEffect } from "react";
-import {fetchTrendingMovies} from "../api/api";
+import { fetchTrendingMovies } from "../api/api";
 import Loader from "../components/Loader/Loader";
 import MoviesList from "../components/MoviesList/MoviesList";
+import MainTitle from "./Home.styled";
 
 const Home = () => {
   const [trendingMovie, setTrendingMovie] = useState([]);
@@ -9,7 +10,7 @@ const Home = () => {
   const [error, setError] = useState(false);
 
   useEffect(() => {
-    async function getTrendingMovies () {
+    async function getTrendingMovies() {
       try {
         setError(false);
         setLoading(true);
@@ -22,7 +23,7 @@ const Home = () => {
       } finally {
         setLoading(false);
       }
-    };
+    }
     getTrendingMovies();
   }, []);
 
@@ -34,8 +35,8 @@ const Home = () => {
         <p>Oops, something went wrong...😿</p>
       ) : (
         <>
-          <h1>Trending movies today</h1>
-          <MoviesList movies={trendingMovie}/>
+          <MainTitle>Trending movies today</MainTitle>
+          <MoviesList movies={trendingMovie} />
         </>
       )}
     </div>
@@ -43,4 +44,3 @@ const Home = () => {
 };
 
 export default Home;
-

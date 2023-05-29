@@ -1,5 +1,7 @@
 import React from "react";
 import { toast } from "react-toastify";
+import { FormInput, SearchButton, StyledForm } from "./Search.styled";
+import { FaSearchengin } from "react-icons/fa";
 
 const Search = ({ onSubmit }) => {
   const handleSubmit = (e) => {
@@ -12,14 +14,21 @@ const Search = ({ onSubmit }) => {
       return;
     }
     onSubmit(searchQuery);
-    e.target.reset()
+    e.target.reset();
   };
   return (
     <>
-      <form onSubmit={handleSubmit}>
-        <input type="text" name="searchQuery" placeholder="Enter your search query"/>
-        <button type="submit">Search</button>
-      </form>
+      <StyledForm onSubmit={handleSubmit}>
+        <FormInput
+          type="text"
+          name="searchQuery"
+          placeholder="Enter your search query"
+        />
+        <SearchButton type="submit">
+          {" "}
+          <FaSearchengin />
+        </SearchButton>
+      </StyledForm>
     </>
   );
 };

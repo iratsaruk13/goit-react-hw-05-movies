@@ -31,11 +31,9 @@ export const fetchMovieCredits = async (movieID) => {
   return data;
 };
 
-export  const fetchMovieReviews = async (movieID) => {
+export const fetchMovieReviews = async (movieID) => {
   const { data } = await axios.get(
     `${BASE_URL}/movie/${movieID}/reviews?api_key=${API_KEY}&language=en-US`
   );
   return data;
 };
-
-// ${BASE_URL}/movie/${}/reviews?api_key=${API_KEY}
