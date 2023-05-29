@@ -1,19 +1,22 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 const MoviesList = ({ movies }) => {
+const location = useLocation();
+
+const path = location.pathname.includes('/movies') ? '' : 'movies/';
+
   return (
     <section>
-      <h1>Trending movies today</h1>
-      {/* <ul>
+      <ul>
         {movies.map(movie => {
           return (
             <li key={movie.id}>
-              <Link to={`/movies/${movie.id}`}>{movie.title}</Link>
+              <Link to={`${path}${movie.id}`} state={{from:location}}>{movie.title}</Link>
             </li>
           );
         })}
-      </ul> */}
+      </ul>
     </section>
   );
 };

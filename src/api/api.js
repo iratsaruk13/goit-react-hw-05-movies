@@ -5,7 +5,7 @@ const API_KEY = "e9acf87159af330adc40d01b23a69585";
 
 export const fetchTrendingMovies = async () => {
   const { data } = await axios.get(
-    `${BASE_URL}/trending/movie/day?api_key=${API_KEY}&language=en-US`
+    `${BASE_URL}/trending/movie/day?api_key=${API_KEY}&language=en-US&page=1`
   );
   return data;
 };
@@ -31,9 +31,11 @@ export const fetchMovieCredits = async (movieID) => {
   return data;
 };
 
-export const fetchMovieReviews = async (movieID) => {
+export  const fetchMovieReviews = async (movieID) => {
   const { data } = await axios.get(
-    `${BASE_URL}/movie/${movieID}/reviews?lapi_key=${API_KEY}$language=en-US&page=1`
+    `${BASE_URL}/movie/${movieID}/reviews?api_key=${API_KEY}&language=en-US`
   );
   return data;
 };
+
+// ${BASE_URL}/movie/${}/reviews?api_key=${API_KEY}

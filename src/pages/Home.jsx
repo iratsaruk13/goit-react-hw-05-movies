@@ -13,8 +13,9 @@ const Home = () => {
       try {
         setError(false);
         setLoading(true);
-        const { response } = await fetchTrendingMovies();
-        setTrendingMovie(response);
+        const { results } = await fetchTrendingMovies();
+        // console.log(results);
+        setTrendingMovie(results);
       } catch (error) {
         console.log(error);
         setError(true);
@@ -32,7 +33,10 @@ const Home = () => {
       ) : error ? (
         <p>Oops, something went wrong...😿</p>
       ) : (
-        <MoviesList trendingMovie={trendingMovie}/>
+        <>
+          <h1>Trending movies today</h1>
+          <MoviesList movies={trendingMovie}/>
+        </>
       )}
     </div>
   );

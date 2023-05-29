@@ -1,45 +1,45 @@
 import React, { useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom";
-import { fetchSearchMovies } from "../api/api";
+import  {fetchSearchMovies}  from "../api/api";
 import { toast } from "react-toastify";
+import MoviesList from "../components/MoviesList/MoviesList";
+import Search from "../components/Search/Search";
 
 const Movies = () => {
   const [movie, setMovie] = useState([]);
   const [searchParams, setSearchParams] = useSearchParams();
 
   useEffect(() => {
-    const searchQuery = searchParams.get("query") ?? "";
+    const searchQuery = searchParams.get("movie") ?? "";
     if (!searchQuery) return;
 
-    async function getSearchMovie() {
+    async function getSearchMovie(searchQuery) {
       try {
-        const { response } = await fetchSearchMovies(searchQuery);
+        const { results } = await fetchSearchMovies(searchQuery);
+        console.log(results);
 
-        if (response.length === 0) {
+        if (results.length === 0) {
           toast.error("There are no movies matching your query 😿");
           setMovie([]);
         } else {
-          setMovie(response);
+          setMovie(results);
         }
       } catch (error) {
         toast.error(error.message);
         setMovie([]);
       }
     }
-    getSearchMovie();
+    getSearchMovie(searchQuery);
   }, [searchParams]);
 
-  const onSubmit = searchQuery => {
-    setSearchParams({searchQuery})
+  const onMovieNameChange = searchQuery => {
+    setSearchParams({movie: searchQuery})
   }
 
   return (
     <>
-      <div>Movies</div>
-      <form onSubmit={onSubmit}>
-        <input type="text" />
-        <button type="submit">Search</button>
-      </form>
+      <Search onSubmit={onMovieNameChange}></Search>
+      <MoviesList movies={movie} />
     </>
   );
 };
